@@ -1,0 +1,27 @@
+<annotation>
+	<folder></folder>
+	<filename>iloveyou_28d39b52-f638-11ef-87ea-1ae573ebd541_jpg.rf.f5162c9a6d21b7e5cb84d0e0d025f7c7.jpg</filename>
+	<path>iloveyou_28d39b52-f638-11ef-87ea-1ae573ebd541_jpg.rf.f5162c9a6d21b7e5cb84d0e0d025f7c7.jpg</path>
+	<source>
+		<database>roboflow.com</database>
+	</source>
+	<size>
+		<width>640</width>
+		<height>640</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>I Love You</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>125</xmin>
+			<xmax>317</xmax>
+			<ymin>232</ymin>
+			<ymax>518</ymax>
+		</bndbox>
+	</object>
+</annotation>

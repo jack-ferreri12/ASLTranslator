@@ -1,0 +1,27 @@
+<annotation>
+	<folder></folder>
+	<filename>thanks_1016b8d6-f63a-11ef-b1bb-1ae573ebd540_jpg.rf.59065486c21c90960a0f224226c8d77e.jpg</filename>
+	<path>thanks_1016b8d6-f63a-11ef-b1bb-1ae573ebd540_jpg.rf.59065486c21c90960a0f224226c8d77e.jpg</path>
+	<source>
+		<database>roboflow.com</database>
+	</source>
+	<size>
+		<width>640</width>
+		<height>640</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Thank You</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>196</xmin>
+			<xmax>467</xmax>
+			<ymin>265</ymin>
+			<ymax>599</ymax>
+		</bndbox>
+	</object>
+</annotation>

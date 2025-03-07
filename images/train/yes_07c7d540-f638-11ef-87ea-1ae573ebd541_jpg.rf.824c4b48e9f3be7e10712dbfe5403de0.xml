@@ -1,0 +1,27 @@
+<annotation>
+	<folder></folder>
+	<filename>yes_07c7d540-f638-11ef-87ea-1ae573ebd541_jpg.rf.824c4b48e9f3be7e10712dbfe5403de0.jpg</filename>
+	<path>yes_07c7d540-f638-11ef-87ea-1ae573ebd541_jpg.rf.824c4b48e9f3be7e10712dbfe5403de0.jpg</path>
+	<source>
+		<database>roboflow.com</database>
+	</source>
+	<size>
+		<width>640</width>
+		<height>640</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Yes</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>376</xmin>
+			<xmax>505</xmax>
+			<ymin>247</ymin>
+			<ymax>468</ymax>
+		</bndbox>
+	</object>
+</annotation>
