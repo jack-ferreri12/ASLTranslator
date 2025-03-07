@@ -2,14 +2,11 @@ import tensorflow as tf
 import cv2
 import numpy as np
 
-# Load the trained model
 model = tf.keras.models.load_model("asl_translator_recovered.keras")
 
-# Define image dimensions (same as training)
 img_height = 224
 img_width = 224
 
-# Define class labels (Update this to match your training labels)
 class_names = ["hello", "yes", "no", "thanks", "iloveyou"]  # Adjust as needed
 
 # Open webcam
@@ -19,8 +16,7 @@ cap = cv2.VideoCapture(0)
 frame_width = int(cap.get(3))
 frame_height = int(cap.get(4))
 
-# Define the size and position of the box (bigger & centered)
-box_size = 500  # Increased size to fully capture two-handed signs
+box_size = 500
 box_x1 = (frame_width // 2) - (box_size // 2)
 box_y1 = (frame_height // 2) - (box_size // 2)
 box_x2 = box_x1 + box_size
@@ -28,13 +24,12 @@ box_y2 = box_y1 + box_size
 
 # Variables for motion detection
 prev_frame = None
-motion_threshold = 500000  # Adjust as needed
+motion_threshold = 500000
 
-# Variables for smoothing predictions
 prediction_history = []
-history_length = 5  # Average over last 5 frames
+history_length = 5
 
-print("📸 Starting ASL Translator... Keep your hand inside the box. Press 'Q' to quit.")
+print("Starting ASL Translator... Keep your hand inside the box. Press 'Q' to quit.")
 
 while True:
     ret, frame = cap.read()
@@ -51,9 +46,8 @@ while True:
     else:
         motion = 0
 
-    prev_frame = gray  # Update previous frame
+    prev_frame = gray
 
-    # Draw a thicker box in the middle of the screen
     cv2.rectangle(frame, (box_x1, box_y1), (box_x2, box_y2), (0, 255, 0), 4)  # Thicker border
 
     # Extract only the region inside the box
@@ -68,10 +62,9 @@ while True:
     # Make a prediction only if motion is detected (useful for signs like "Thanks")
     if motion > motion_threshold:
         predictions = model.predict(img)
-        predicted_class = np.argmax(predictions)  # Get class index
-        confidence = np.max(predictions)  # Get confidence score
+        predicted_class = np.argmax(predictions)
+        confidence = np.max(predictions)
 
-        # Only add to history if confidence is high
         if confidence > 0.65:
             prediction_history.append(predicted_class)
             if len(prediction_history) > history_length:
@@ -79,7 +72,6 @@ while True:
 
             # Get the most common prediction over the last few frames
             most_common_prediction = max(set(prediction_history), key=prediction_history.count)
-
             label = f"{class_names[most_common_prediction]} ({confidence:.2f})"
             cv2.putText(frame, label, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 

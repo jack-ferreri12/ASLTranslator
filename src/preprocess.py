@@ -5,14 +5,12 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Set dataset paths
 train_dir = "images/train"
 test_dir = "images/test"
 
-# Image settings
 img_height = 224
 img_width = 224
-batch_size = 64  # Increased for stability
+batch_size = 64
 
 
 # Function to parse XML files and extract labels
@@ -20,24 +18,21 @@ def parse_annotation(xml_file):
     tree = ET.parse(xml_file)
     root = tree.getroot()
 
-    # Get image filename
     filename = root.find("filename").text
 
-    # Get class label (assuming single-label per image)
     object_tag = root.find("object")
     label = object_tag.find("name").text if object_tag is not None else "unknown"
 
     return filename, label
 
 
-# Function to load images and labels
 def load_dataset(image_folder):
     images = []
     labels = []
-    class_names = set()  # Store unique class names
+    class_names = set()
 
     for filename in os.listdir(image_folder):
-        if filename.endswith(".xml"):  # Process XML files only
+        if filename.endswith(".xml"):
             xml_path = os.path.join(image_folder, filename)
             img_filename, label = parse_annotation(xml_path)
 
@@ -54,7 +49,6 @@ def load_dataset(image_folder):
                 images.append(img)
                 labels.append(label)
 
-    # Convert labels to indices
     class_names = sorted(list(class_names))
     labels = np.array([class_names.index(lbl) for lbl in labels], dtype=np.int32)
 
@@ -69,11 +63,9 @@ test_images, test_labels, _ = load_dataset(test_dir)
 train_images = train_images.astype("float32") / 255.0
 test_images = test_images.astype("float32") / 255.0
 
-# Convert to TensorFlow dataset
 train_ds = tf.data.Dataset.from_tensor_slices((train_images, train_labels)).batch(batch_size).shuffle(len(train_labels))
 test_ds = tf.data.Dataset.from_tensor_slices((test_images, test_labels)).batch(batch_size)
 
-# Show some sample images with their labels
 plt.figure(figsize=(10, 10))
 for i in range(9):
     plt.subplot(3, 3, i + 1)
